@@ -1,0 +1,46 @@
+# 🔐 Credenciales / Keys
+*.json
+*.pem
+*.key
+.env
+.env.*
+secrets/
+credentials/
+serviceAccountKey.json
+OcrGoogleVisionFirebaseKey.json
+OcrFirebaseKey.json
+
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+
+# 📦 Build / Cache
+build/
+dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# 🧪 Test / Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# 🧠 IDE / OS
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# 📄 Logs
+*.log
+
+# 🔁 Uvicorn
+*.sqlite3

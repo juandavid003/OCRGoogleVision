@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+google-cloud-vision
+firebase-admin
+python-multipart
+python-dotenv
