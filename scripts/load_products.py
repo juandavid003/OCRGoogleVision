@@ -1,26 +1,42 @@
-from firebase_admin import credentials, firestore
-import firebase_admin
+# from firebase_admin import credentials, firestore
+# import firebase_admin
 
-cred = credentials.Certificate("OcrFirebaseKey.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+# # Inicializar Firebase
+# cred = credentials.Certificate("OcrFirebaseKey.json")
+# firebase_admin.initialize_app(cred)
+# db = firestore.client()
 
-products = [
-    {
-        "id": "topident_infantil",
-        "brand": "TOPIDENT",
-        "category": "Tópico Bucal",
-        "aliases": ["topident infantil", "topident inf", "topident niño", "topident nino"]
-    },
-    {
-        "id": "soral_stop",
-        "brand": "SORAL",
-        "category": "Pasta Dental",
-        "aliases": ["soral stop", "soral sensibilidad", "soral stop pasta"]
-    }
-]
+# challenges_ref = db.collection("challenges")
+# docs = challenges_ref.stream()
 
-for p in products:
-    db.collection("ocr_map").document(p["id"]).set(p)
+# count = 0
 
-print("Catálogo OCR cargado con éxito ✅")
+# for doc in docs:
+#     data = doc.to_dict()
+
+#     product_id = data.get("id")
+#     title = data.get("title", "")
+#     category = data.get("category", "unknown")
+
+#     if not product_id:
+#         continue  # saltar si no tiene id
+
+#     # Generar aliases automáticos básicos
+#     aliases = []
+#     if title:
+#         title_lower = title.lower()
+#         aliases.append(title_lower)
+#         aliases.append(title_lower.replace(" ", ""))
+    
+#     ocr_map_item = {
+#         "id": product_id,
+#         "brand": title.split(" ")[0] if title else "",  # ejemplo: "Pasta" de "Pasta Dental GINGIVIT"
+#         "category": category,
+#         "aliases": aliases
+#     }
+
+#     db.collection("ocr_map").document(product_id).set(ocr_map_item)
+#     print(f"✔ OCR map creado para: {product_id}")
+#     count += 1
+
+# print(f"\n🔥 Total productos cargados en ocr_map: {count}")

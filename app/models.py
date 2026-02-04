@@ -12,3 +12,4 @@ class Product(BaseModel):
 
 class InvoiceBase64Request(BaseModel):
     image_base64: str
+    childId: str  
