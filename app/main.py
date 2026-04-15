@@ -9,7 +9,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_APPLICATION_CRE
 from app.models import InvoiceBase64Request
 from app.ocr import extract_text_from_base64
 from app.matcher import detect_products
-from app.firebase import get_ocr_map, save_ocr_history
+from app.firebase import get_ocr_map, save_ocr_history, is_duplicate_invoice
 
 app = FastAPI(title="Invoice OCR Microservice")
 
@@ -21,6 +21,14 @@ async def analyze_invoice_base64(payload: InvoiceBase64Request):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+    # 🚫 VALIDAR DUPLICADO PRIMERO
+    if is_duplicate_invoice(ocr_text):
+        return {
+            "raw_text": "Factura duplicada detectada",
+            "detected_products": []
+        }
+
+    # ✅ SOLO SI NO ES DUPLICADA
     products = get_ocr_map()
     found_products = detect_products(ocr_text, products)
 
